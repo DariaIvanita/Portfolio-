@@ -5,22 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Daria Ivanita</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic styling for the portfolio section */
+        .portfolio-section {
+            padding: 20px;
+            text-align: center;
+        }
+        .portfolio-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .portfolio-item {
+            position: relative; /* For absolute positioning of description */
+            overflow: hidden; /* Hide overflow for neatness */
+        }
+        .portfolio-item img {
+            width: 100%; /* Make image responsive */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px; /* Optional: Rounded corners */
+        }
+        .portfolio-description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            color: white;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.3s; /* Smooth transition for hover effect */
+        }
+        .portfolio-item:hover .portfolio-description {
+            opacity: 1; /* Show description on hover */
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="HomePage.html">
+                <a href="index.html">
                     <img src="logo.png" alt="Your Logo" class="logo">
                 </a>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="HomePage.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="personal biography.html" class="nav-link">About Me</a></li>
+                <li class="nav-item"><a href="designerportfoliowork.html" class="nav-link">Designer Portfolio</a></li>
+                <li class="nav-item"><a hre="developerwork.html" class=nav-link>Developer Portfolio</a/li>
+                <li class="nav-item"><a href="c:\Users\dasha\Downloads\Daria_Ivanita_Resume (1).pdf" class="nav-link" target="_blank">Resume</a></li> <!-- Check this link -->
                 <li class="nav-item"><a href="contactpage.html" class="nav-link">Contact</a></li>
             </ul>
-            <!-- Social Links -->
             <div class="nav-social">
                 <a href="https://www.linkedin.com/in/daria-ivanita-9b33b822a/" target="_blank" class="social-link">
                     <img src="linkdinlogo.jpeg" alt="LinkedIn" class="social-logo">
@@ -38,18 +76,23 @@
         <div class="portfolio-gallery">
             <div class="portfolio-item">
                 <img src="project1.png" alt="Project 1">
+                <div class="portfolio-description">Organized during my time at SAIT's coding club, this hackathon brought together aspiring developers to collaborate on innovative solutions. My role involved managing logistics and fostering a creative environment, enhancing my coding and project management skills.</div>
             </div>
             <div class="portfolio-item">
                 <img src="project2.png" alt="Project 2">
+                <div class="portfolio-description">Designed a professional business card that effectively communicates essential information while leaving a lasting impression. This project showcased my ability to blend modern aesthetics with effective branding.</div>
             </div>
             <div class="portfolio-item">
                 <img src="project3.png" alt="Project 3">
+                <div class="portfolio-description">Created a poster to promote mental health awareness, using impactful imagery and concise messaging to encourage open conversations and destigmatize mental health issues.</div>
             </div>
-            <div class="portfolio-item" alt="Project 4">
+            <div class="portfolio-item">
                 <img src="Project4.png" alt="Project 4">
+                <div class="portfolio-description">Designed a poster highlighting the skills I acquired in New Media Production and Design (NMPD), effectively showcasing my proficiency in design tools and methodologies.</div>
             </div>
-            <div class="portfolio-item" alt="Project 5">
-                <img src="Project5.png" alt="Project5">
+            <div class="portfolio-item">
+                <img src="Project5.png" alt="Project 5">
+                <div class="portfolio-description">Another skills showcase poster that emphasizes different design techniques learned in NMPD, demonstrating my versatility and ability to create engaging visual narratives.</div>
             </div>
         </div>
     </section>
@@ -63,4 +106,3 @@
     <script src="script5.js"></script>
 </body>
 </html>
-
