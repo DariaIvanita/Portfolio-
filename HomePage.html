@@ -1,15 +1,27 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daria Ivanita - Designer & Developer</title>
+    <title>Daria Ivanita - Design Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .description {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .gallery-item {
+            display: inline-block;
+            margin: 10px;
+        }
+        .gallery-item img {
+            width: 200px; /* Adjust the size as needed */
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -21,14 +33,11 @@
                 </a>
             </div>
             <ul class="nav-menu">
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="personal biography.html" class="nav-link">About Me</a></li>
-                    <li class="nav-item"><a href="designerportfoliowork.html" class="nav-link">Designer Portfolio</a></li>
-                    <li class="nav-item"><a hre="developerwork.html" class=nav-link>Developer Portfolio</a/li>
-                    <li class="nav-item"><a href="file:///C:/Users/dasha/Downloads/Daria_Ivanita_Resume%20(1).pdf" class="nav-link" target="_blank">Resume</a></li> <!-- Check this link -->
-                    <li class="nav-item"><a href="contactpage.html" class="nav-link">Contact</a></li>
-                </ul>
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Me</a></li>
+                <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li class="nav-item"><a href="Daria_Ivanita_Resume%20(1).pdf" class="nav-link" target="_blank">Resume</a></li>
+                <li class="nav-item"><a href="contactpage.html" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-social">
                 <a href="https://www.linkedin.com/in/daria-ivanita-9b33b822a/" target="_blank">
@@ -41,24 +50,41 @@
         </div>
     </nav>
 
-    <!-- Split Sections -->
-    <div class="split-container">
-        <!-- Designer Section -->
-        <div class="split split-left">
-            <div class="content">
-                <h2>Designer</h2>
-                <a href="designerportfoliowork.html" class="split-button">See My Design Work</a> <!-- Correct link here -->
-            </div>
-            <img src="designme.png" alt="Designer Image" class="split-image">
-        </div>
+    <h1>My Design Work</h1>
 
-        <!-- Developer Section -->
-        <div class="split split-right">
-            <div class="content">
-                <h2>Developer</h2>
-                <a href="developerwork.html" class="split-button">See My Development Work</a>
-            </div>
-            <img src="daria.businesscard.jpg" alt="Developer Image" class="split-image">
+    <!-- Design Gallery -->
+    <div class="design-gallery">
+        <a href="#design1" class="gallery-item" onclick="showDescription('design1')">
+            <img src="design1.png" alt="Design 1">
+        </a>
+        <a href="#design2" class="gallery-item" onclick="showDescription('design2')">
+            <img src="design2.png" alt="Design 2">
+        </a>
+        <a href="#design3" class="gallery-item" onclick="showDescription('design3')">
+            <img src="design3.png" alt="Design 3">
+        </a>
+        <a href="#design4" class="gallery-item" onclick="showDescription('design4')">
+            <img src="design4.png" alt="Design 4">
+        </a>
+    </div>
+
+    <!-- Design Descriptions (hidden by default) -->
+    <div class="design-descriptions">
+        <div id="design1" class="description">
+            <h2>Design 1</h2>
+            <p>Description for Design 1 goes here.</p>
+        </div>
+        <div id="design2" class="description">
+            <h2>Design 2</h2>
+            <p>Description for Design 2 goes here.</p>
+        </div>
+        <div id="design3" class="description">
+            <h2>Design 3</h2>
+            <p>Description for Design 3 goes here.</p>
+        </div>
+        <div id="design4" class="description">
+            <h2>Design 4</h2>
+            <p>Description for Design 4 goes here.</p>
         </div>
     </div>
 
@@ -67,10 +93,14 @@
         <p>&copy; 2024 Daria Ivanita. All rights reserved.</p>
     </footer>
 
-    <!-- External JavaScript -->
-    <script src="script.js"></script>
-</body>
-</html>
+    <script>
+        function showDescription(designId) {
+            // Hide all descriptions
+            const descriptions = document.querySelectorAll('.description');
+            descriptions.forEach(desc => {
+                desc.classList.remove('active');
+            });
+
 
 
 
