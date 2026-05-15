@@ -5,44 +5,337 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daria Ivanita - About Me</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+            background: linear-gradient(to bottom right, #fff5f8, #ffe9f2);
+            color:#333;
+            overflow-x:hidden;
+        }
+
+        /* NAVBAR */
+
+        .navbar{
+            width:100%;
+            padding:20px 8%;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index:1000;
+            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.6);
+            border-bottom:1px solid rgba(255,255,255,0.4);
+        }
+
+        .nav-container{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            width:70px;
+        }
+
+        .nav-menu{
+            display:flex;
+            gap:30px;
+            list-style:none;
+        }
+
+        .nav-link{
+            text-decoration:none;
+            color:#444;
+            font-weight:500;
+            transition:0.3s;
+            position:relative;
+        }
+
+        .nav-link:hover{
+            color:#ff5fa2;
+        }
+
+        .nav-link::after{
+            content:'';
+            position:absolute;
+            width:0%;
+            height:2px;
+            background:#ff5fa2;
+            left:0;
+            bottom:-5px;
+            transition:0.3s;
+        }
+
+        .nav-link:hover::after{
+            width:100%;
+        }
+
+        .nav-social{
+            display:flex;
+            gap:15px;
+        }
+
+        .social-logo{
+            width:28px;
+            transition:0.3s;
+        }
+
+        .social-logo:hover{
+            transform:scale(1.15);
+        }
+
+        /* HERO ABOUT SECTION */
+
+        .about-section{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:140px 8% 80px;
+            gap:80px;
+            flex-wrap:wrap;
+        }
+
+        .about-text{
+            flex:1;
+            min-width:320px;
+            animation:fadeIn 1s ease;
+        }
+
+        .about-text h1{
+            font-size:4rem;
+            line-height:1.1;
+            margin-bottom:20px;
+            color:#222;
+        }
+
+        .about-text h1 span{
+            color:#ff5fa2;
+        }
+
+        .about-text p{
+            font-size:1.1rem;
+            line-height:1.9;
+            color:#555;
+            margin-bottom:30px;
+            max-width:650px;
+        }
+
+        .about-buttons{
+            display:flex;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            padding:14px 30px;
+            border-radius:50px;
+            text-decoration:none;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .btn-primary{
+            background:#ff5fa2;
+            color:white;
+            box-shadow:0 10px 30px rgba(255,95,162,0.3);
+        }
+
+        .btn-primary:hover{
+            transform:translateY(-3px);
+        }
+
+        .btn-secondary{
+            border:2px solid #ff5fa2;
+            color:#ff5fa2;
+        }
+
+        .btn-secondary:hover{
+            background:#ff5fa2;
+            color:white;
+        }
+
+        /* IMAGE */
+
+        .about-image{
+            flex:1;
+            display:flex;
+            justify-content:center;
+            position:relative;
+            min-width:320px;
+            animation:float 5s ease-in-out infinite;
+        }
+
+        .about-image img{
+            width:400px;
+            max-width:100%;
+            border-radius:30px;
+            object-fit:cover;
+            box-shadow:0 20px 50px rgba(0,0,0,0.15);
+            border:8px solid rgba(255,255,255,0.5);
+        }
+
+        .glow{
+            position:absolute;
+            width:420px;
+            height:420px;
+            background:#ffb6d5;
+            filter:blur(90px);
+            z-index:-1;
+            opacity:0.5;
+        }
+
+        /* FOOTER */
+
+        .footer{
+            text-align:center;
+            padding:30px;
+            background:white;
+            color:#777;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes float{
+            0%{
+                transform:translateY(0px);
+            }
+            50%{
+                transform:translateY(-15px);
+            }
+            100%{
+                transform:translateY(0px);
+            }
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(40px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px){
+
+            .about-section{
+                flex-direction:column-reverse;
+                text-align:center;
+                gap:50px;
+            }
+
+            .about-text h1{
+                font-size:3rem;
+            }
+
+            .about-buttons{
+                justify-content:center;
+            }
+
+            .nav-menu{
+                display:none;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 <body>
-    
+
     <nav class="navbar">
         <div class="nav-container">
+
             <div class="nav-logo">
                 <a href="index.html">
-                    <img src="logo.png" alt="Your Logo" class="logo">
+                    <img src="logo.png" alt="Logo" class="logo">
                 </a>
             </div>
+
             <ul class="nav-menu">
-              <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-              <li class="nav-item"><a href="personal biography.html" class="nav-link">About Me</a></li>
-              <li class="nav-item"><a href="designerportfoliowork.html" class="nav-link">Designer Portfolio</a></li>
-              <li class="nav-item"><a hre="developerwork.html" class="nav-link">Developer Portfolio</a/li>
-              <li class="nav-item"><a href="c:\Users\dasha\Downloads\Daria_Ivanita_Resume (1).pdf" class="nav-link" target="_blank">Resume</a></li> <!-- Check this link -->
-              <li class="nav-item"><a href="contactpage.html" class="nav-link">Contact</a></li>
-          </ul>
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="personal biography.html" class="nav-link">About Me</a></li>
+                <li class="nav-item"><a href="designerportfoliowork.html" class="nav-link">Designer Portfolio</a></li>
+                <li class="nav-item"><a href="developerwork.html" class="nav-link">Developer Portfolio</a></li>
+                <li class="nav-item"><a href="Daria_Ivanita_Resume.pdf" class="nav-link" target="_blank">Resume</a></li>
+                <li class="nav-item"><a href="contactpage.html" class="nav-link">Contact</a></li>
+            </ul>
+
             <div class="nav-social">
                 <a href="https://www.linkedin.com/in/daria-ivanita-9b33b822a/" target="_blank">
                     <img src="linkdinlogo.jpeg" alt="LinkedIn" class="social-logo">
                 </a>
+
                 <a href="https://github.com/DariaIvanita" target="_blank">
                     <img src="githublogo.png" alt="GitHub" class="social-logo">
                 </a>
             </div>
+
         </div>
     </nav>
 
-    <h1>About Me</h1>
-    <p>
-      
-    Hi! I’m Daria Ivanita, a New Media Production and Design graduate passionate about creating digital experiences that inspire. I specialize in graphic design and web development, turning ideas into user-friendly, visually striking solutions. Always curious and creative, I love tackling challenges and collaborating on innovative projects.
-      </p>
+    <!-- ABOUT SECTION -->
 
-  
+    <section class="about-section">
+
+        <div class="about-text">
+
+            <h1>
+                Hi, I'm <span>Daria</span> ✨
+            </h1>
+
+            <p>
+                I’m a frontend developer and creative designer based in Calgary with a passion for building digital experiences that feel modern, interactive, and visually meaningful.
+                <br><br>
+                My journey started through creativity and design, which naturally led me into frontend development and interactive web experiences. I love combining aesthetics with code to create projects that not only look beautiful but also feel immersive and engaging.
+                <br><br>
+                I’ve worked on projects involving UI/UX design, branding, web development, social media campaigns, and 3D experiences using technologies like HTML, CSS, JavaScript, React, and Three.js.
+                <br><br>
+                Outside of development, I’m inspired by art, fashion, music, storytelling, and digital creativity. I’m always exploring new ways to bring personality and emotion into the experiences I create.
+            </p>
+
+            <div class="about-buttons">
+                <a href="contactpage.html" class="btn btn-primary">
+                    Let's Connect
+                </a>
+
+                <a href="designerportfoliowork.html" class="btn btn-secondary">
+                    View My Work
+                </a>
+            </div>
+
+        </div>
+
+        <!-- IMAGE -->
+
+        <div class="about-image">
+
+            <div class="glow"></div>
+
+            <!-- PUT YOUR PHOTO HERE -->
+            <img src="DariaI.jpg" alt="Daria Ivanita">
+
+        </div>
+
+    </section>
+
     <footer class="footer">
-        <p>&copy; 2024 Daria Ivanita. All rights reserved.</p>
+        <p>&copy; 2026 Daria Ivanita. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
