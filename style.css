@@ -1,189 +1,279 @@
 
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-  color: #333; 
+/* ========== RESET ========== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', Arial, sans-serif;
 }
 
-
-.navbar {
-  background-color: #ffccff; 
-  padding: 10px 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+body{
+    background:#fff;
+    color:#333;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
 }
 
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* ========== GLOBAL ANIMATION BASE ========== */
+section, .split, .contact-card{
+    animation: fadeUp 0.8s ease both;
 }
 
-.nav-logo img {
-  height: 50px; 
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+        filter:blur(5px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
 }
 
-.nav-menu {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
+/* ========== NAVBAR (GLASS WOW EFFECT) ========== */
+
+.navbar{
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(255,255,255,0.6);
+    backdrop-filter: blur(20px);
+    border-bottom:1px solid rgba(0,0,0,0.05);
 }
 
-.nav-item {
-  margin: 0 15px;
+.logo{
+    width:65px;
+    transition:0.3s ease;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  transition: color 0.3s;
+.logo:hover{
+    transform:rotate(-5deg) scale(1.05);
 }
 
-.nav-link:hover {
-  color: #d5006d; 
+/* NAV LINKS */
+.nav-menu{
+    display:flex;
+    gap:25px;
+    list-style:none;
 }
 
-/* Social Links */
-.nav-social {
-  display: flex;
+.nav-link{
+    text-decoration:none;
+    color:#444;
+    font-weight:500;
+    position:relative;
+    transition:0.3s;
 }
 
-.social-logo {
-  height: 25px;
-  margin-left: 10px;
+.nav-link:hover{
+    color:#ff5fa2;
+    transform:translateY(-2px);
 }
 
-/* Hero Section */
-.hero {
-  background: #ffccff; 
-  color: #333;
-  padding: 50px 20px;
-  text-align: center;
+.nav-link::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0%;
+    height:2px;
+    background:#ff5fa2;
+    transition:0.3s;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+.nav-link:hover::after{
+    width:100%;
 }
 
-.hero p {
-  font-size: 1.2rem;
+/* SOCIAL ICONS */
+.social-logo{
+    width:28px;
+    transition:0.3s;
 }
 
-/* Split Sections */
-.split-container {
-  display: flex;
-  margin: 20px;
-  justify-content: center;
+.social-logo:hover{
+    transform:scale(1.2) rotate(5deg);
 }
 
-.split {
-  flex: 1;
-  margin: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+/* ========== SPLIT HOMEPAGE WOW ========== */
+
+.split-container{
+    display:flex;
+    height:90vh;
 }
 
-.split:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
+/* LEFT / RIGHT PANELS */
+.split{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    transition:0.6s ease;
 }
 
-.split-image {
-  width: 100%;
-  height: auto;
+.split:hover{
+    flex:1.15;
 }
 
-.content {
-  padding: 20px;
-  text-align: center;
+/* BACKGROUND GLOW LAYER */
+.split::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle, rgba(255,95,162,0.25), transparent 70%);
+    filter:blur(40px);
+    opacity:0.6;
+    transition:0.5s;
 }
 
-.split-button {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #d5006d; 
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+.split:hover::before{
+    transform:scale(1.2);
+    opacity:0.9;
 }
 
-.split-button:hover {
-  background-color: #a3004d; 
+/* CONTENT */
+.content{
+    text-align:center;
+    z-index:2;
 }
 
-/* Gallery Styles */
-.gallery-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-  text-align: center;
+.content h2{
+    font-size:2.8rem;
+    margin-bottom:20px;
+    letter-spacing:1px;
 }
 
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+/* SPLIT IMAGE FLOAT */
+.split-image{
+    position:absolute;
+    bottom:0;
+    width:60%;
+    opacity:0.95;
+    transition:0.6s ease;
+    filter:drop-shadow(0 20px 40px rgba(0,0,0,0.15));
 }
 
-.gallery-item {
-  flex: 1 1 calc(33.333% - 20px); 
-  background: #ffffff; 
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden; 
-  transition: transform 0.3s;
+.split:hover .split-image{
+    transform:translateY(-10px) scale(1.05);
 }
 
-.gallery-item:hover {
-  transform: scale(1.03); /* Slight zoom effect on hover */
+/* BUTTONS (WOW VERSION) */
+.split-button{
+    display:inline-block;
+    padding:12px 22px;
+    background:linear-gradient(135deg, #ff5fa2, #ff8fc1);
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:0.3s;
+    box-shadow:0 10px 25px rgba(255,95,162,0.25);
 }
 
-.gallery-item img {
-  width: 100%;
-  height: auto; 
+.split-button:hover{
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:0 20px 40px rgba(255,95,162,0.35);
 }
 
-.description {
-  padding: 15px;
-  text-align: left; 
+/* ========== CONTACT CARD WOW ========== */
+
+.contact-section{
+    min-height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:80px 20px;
+
+    background:linear-gradient(135deg, #fff0f6, #ffe4ec);
 }
 
-h1, h2, h3, h4 {
-  color: #d5006d; 
+.contact-card{
+    background:rgba(255,255,255,0.8);
+    backdrop-filter: blur(15px);
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 25px 70px rgba(0,0,0,0.1);
+    max-width:520px;
+    width:100%;
+    transition:0.4s ease;
 }
 
-.footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #ffccff;
-  color: #333;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+.contact-card:hover{
+    transform:translateY(-5px);
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .gallery-item {
-      flex: 1 1 calc(50% - 20px); 
-  }
+.contact-image{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:20px;
+    margin-bottom:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.15);
+}
 
-  .split {
-      flex: 1 1 100%;
-  }
+/* EMAIL BUTTON WOW */
+.email-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:18px;
+    padding:12px 26px;
+    background:linear-gradient(135deg, #ff5fa2, #ff8fc1);
+    color:white;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+    box-shadow:0 10px 25px rgba(255,95,162,0.25);
+}
 
-  .nav-menu {
-      flex-direction: column; 
-  }
+.email-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 45px rgba(255,95,162,0.35);
+}
 
-  .nav-item {
-      margin: 5px 0;
-  }
+/* ========== FOOTER ========== */
+
+.footer{
+    text-align:center;
+    padding:25px;
+    background:#fff;
+    color:#777;
+    border-top:1px solid rgba(0,0,0,0.05);
+}
+
+/* ========== MOBILE WOW FIX ========== */
+
+@media(max-width:900px){
+
+    .split-container{
+        flex-direction:column;
+        height:auto;
+    }
+
+    .split{
+        height:50vh;
+    }
+
+    .nav-menu{
+        display:none;
+    }
+
+    .content h2{
+        font-size:2rem;
+    }
 }
