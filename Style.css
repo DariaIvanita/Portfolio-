@@ -1,0 +1,260 @@
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* BODY */
+body{
+    background:#fff;
+    color:#333;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+}
+
+.logo{
+    width:65px;
+}
+
+.nav-menu{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-link{
+    text-decoration:none;
+    color:#444;
+    font-weight:500;
+    transition:0.3s;
+    position:relative;
+}
+
+.nav-link:hover{
+    color:#ff5fa2;
+}
+
+.nav-link::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0%;
+    height:2px;
+    background:#ff5fa2;
+    transition:0.3s;
+}
+
+.nav-link:hover::after{
+    width:100%;
+}
+
+.nav-social{
+    display:flex;
+    gap:12px;
+}
+
+.social-logo{
+    width:28px;
+    transition:0.3s;
+}
+
+.social-logo:hover{
+    transform:scale(1.15);
+}
+
+/* ================= SPLIT HOMEPAGE ================= */
+
+.split-container{
+    display:flex;
+    height:90vh;
+}
+
+.split{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    transition:0.4s;
+}
+
+.split-left{
+    background:linear-gradient(135deg, #ffe4ec, #fff);
+}
+
+.split-right{
+    background:linear-gradient(135deg, #fff, #ffe4ec);
+}
+
+.split:hover{
+    flex:1.1;
+}
+
+.content{
+    text-align:center;
+    z-index:2;
+}
+
+.content h2{
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+/* SPLIT IMAGE */
+.split-image{
+    position:absolute;
+    bottom:0;
+    width:60%;
+    opacity:0.9;
+    transition:0.4s;
+}
+
+.split:hover .split-image{
+    transform:scale(1.05);
+}
+
+/* BUTTONS */
+.split-button{
+    display:inline-block;
+    padding:12px 22px;
+    background:linear-gradient(135deg, #ff5fa2, #ff8fc1);
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.split-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(255,95,162,0.25);
+}
+
+/* ================= CONTACT PAGE ================= */
+
+.contact-section{
+    min-height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:80px 20px;
+    background:linear-gradient(135deg, #fff0f6, #ffe4ec);
+}
+
+.contact-card{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.08);
+    max-width:500px;
+    width:100%;
+    animation: fadeIn 0.8s ease;
+}
+
+.contact-image{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:20px;
+    margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.contact-info p{
+    font-size:1.1rem;
+    margin:10px 0;
+}
+
+.contact-info a{
+    color:#ff5fa2;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* CONTACT BUTTON */
+.email-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:18px;
+    padding:12px 24px;
+    background:linear-gradient(135deg, #ff5fa2, #ff8fc1);
+    color:white;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+    box-shadow:0 10px 25px rgba(255,95,162,0.25);
+}
+
+.email-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(255,95,162,0.35);
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    text-align:center;
+    padding:25px;
+    background:#fff;
+    color:#777;
+    border-top:1px solid rgba(0,0,0,0.05);
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .split-container{
+        flex-direction:column;
+        height:auto;
+    }
+
+    .split{
+        height:50vh;
+    }
+
+    .nav-menu{
+        display:none;
+    }
+
+    .content h2{
+        font-size:2rem;
+    }
+}
