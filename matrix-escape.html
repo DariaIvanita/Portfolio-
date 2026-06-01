@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Matrix Protocol</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: monospace;
+        background: black;
+        color: #00ff00;
+        overflow: hidden;
+    }
+
+    /* MATRIX BACKGROUND ALWAYS ON */
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
+
+    /* LOGIN */
+    #login {
+        position: relative;
+        z-index: 2;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 18px;
+        background: black;
+        border: 1px solid #00ff00;
+        color: #00ff00;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background: #00ff00;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .clue {
+        margin-top: 15px;
+        opacity: 0.8;
+        font-size: 14px;
+    }
+
+    /* MAIN GAME */
+    #matrix {
+        display: none;
+        position: relative;
+        z-index: 2;
+        height: 100vh;
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .timer {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .quote {
+        max-width: 700px;
+        margin: auto;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .pill-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .pill-image {
+        width: 350px;
+    }
+
+    .pill-btn {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .left { left: 0; }
+    .right { right: 0; }
+
+    /* OVERLAYS */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        color: red;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 999;
+        text-align: center;
+    }
+
+    .success {
+        color: #00ff00;
+    }
+
+    .agent-img {
+        width: 600px;
+        margin-top: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<canvas id="matrixCanvas"></canvas>
+
+<!-- LOGIN PAGE -->
+<div id="login">
+    <h1>ENTER PASSWORD</h1>
+    <input type="password" id="password" placeholder="••••" />
+    <button onclick="enter()">ENTER</button>
+
+    <div class="clue">
+        CLUE: The code is hidden in time… 123 seconds
+    </div>
+</div>
+
+<!-- GAME PAGE -->
+<div id="matrix">
+
+    <div class="timer">Time Remaining: <span id="time">123</span>s</div>
+
+    <div class="quote">
+        Take the blue pill and remain a slave to the illusion.<br>
+        Take the red pill and become a slave to reality.<br><br>
+        Choose wisely, Agent.
+    </div>
+
+    <div class="pill-container">
+        <img class="pill-image"
+        src="https://mmacoach.net/wp-content/uploads/2021/04/kisspng-morpheus-the-matrix-neo-red-pill-and-blue-pill-you-good-pills-will-play-5adf94a99c4d73.4062390915246020256402.png" />
+
+        <div class="pill-btn left" onclick="wrongChoice()"></div>
+        <div class="pill-btn right" onclick="correctChoice()"></div>
+    </div>
+
+</div>
+
+<!-- ERROR -->
+<div class="overlay" id="error">
+    <h1>AGENT DETECTED</h1>
+    <p>Not enough time to escape the Matrix.</p>
+</div>
+
+<!-- SUCCESS -->
+<div class="overlay success" id="success">
+    <h1>CONGRATULATIONS AGENT</h1>
+    <p>You have escaped the illusion.</p>
+
+    <img class="agent-img"
+    src="https://wallpapercat.com/w/full/5/e/c/459749-1920x1080-desktop-full-hd-agent-smith-the-matrix-background-photo.jpg" />
+</div>
+
+<script>
+
+let time = 123;
+let interval;
+
+/* ENTER PASSWORD */
+function enter() {
+    const pass = document.getElementById("password").value;
+
+    if (pass === "123") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("matrix").style.display = "block";
+        startTimer();
+    } else {
+        alert("Wrong password");
+    }
+}
+
+/* TIMER */
+function startTimer() {
+    clearInterval(interval);
+    time = 123;
+
+    interval = setInterval(() => {
+        time--;
+        document.getElementById("time").innerText = time;
+
+        if (time <= 0) {
+            clearInterval(interval);
+            document.getElementById("error").style.display = "flex";
+        }
+    }, 1000);
+}
+
+/* WRONG PILLS → RESET TO FIRST PAGE */
+function wrongChoice() {
+    clearInterval(interval);
+
+    document.getElementById("matrix").style.display = "none";
+    document.getElementById("login").style.display = "flex";
+
+    document.getElementById("error").style.display = "none";
+    document.getElementById("success").style.display = "none";
+
+    document.getElementById("password").value = "";
+    time = 123;
+}
+
+/* CORRECT */
+function correctChoice() {
+    clearInterval(interval);
+    document.getElementById("success").style.display = "flex";
+}
+
+/* MATRIX RAIN */
+const canvas = document.getElementById("matrixCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+let letters = "01".split("");
+let fontSize = 14;
+let columns = canvas.width / fontSize;
+let drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff00";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        let text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 33);
+
+</script>
+
+</body>
+</html>
